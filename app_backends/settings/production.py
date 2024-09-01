@@ -24,7 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-$gy#mq7jp)@^yfg)4u52-+b63%5k_h#4@hef10wpq1)_v$=h0u'
+# SECRET_KEY = 'django-insecure-$gy#mq7jp)@^yfg)4u52-+b63%5k_h#4@hef10wpq1)_v$=h0u'
+from app_backends.settings import get_secret
+SECRET_KEY = get_secret('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -84,13 +86,20 @@ WSGI_APPLICATION = 'app_backends.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+DB_NAME = get_secret("DB_NAME")
+DB_USER_NM = get_secret("DB_USER_NM")
+DB_USER_PW = get_secret("DB_USER_PW")
+DB_IP = get_secret("DB_IP")
+DB_PORT = get_secret("DB_PORT")
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env('DB_NAME'),
-        'USER': env('DB_USER'),
-        'PASSWORD': env('DB_PASSWORD'),
-        'HOST': env('DB_HOST'),
+        'NAME': DB_NAME,
+        'USER': DB_USER_NM,
+        'PASSWORD': DB_USER_PW,
+        'HOST': DB_IP,
+        'PORT': DB_PORT
     }
 }
 
