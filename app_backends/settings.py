@@ -43,10 +43,15 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Local
     'accounts',
+    'wordly',
     # Third Party
     'djoser',
     'rest_framework',
     'corsheaders',
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000"
 ]
 
 MIDDLEWARE = [
@@ -91,6 +96,7 @@ DATABASES = {
         'USER': env('DB_USER'),
         'PASSWORD': env('DB_PASSWORD'),
         'HOST': env('DB_HOST'),
+        'PORT': 5432,
     }
 }
 
