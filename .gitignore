@@ -1,2 +1,3 @@
 /app_backends/.env
+/app_backends/settings/.env
 /.venv

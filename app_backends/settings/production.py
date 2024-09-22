@@ -29,9 +29,11 @@ from app_backends.settings import get_secret
 SECRET_KEY = get_secret('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["https://wordlyapp.netlify.app/", "localhost"]
+# CORS_ALLOW_HEADERS = ['*']
 
 
 # Application definition
@@ -45,10 +47,16 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Local
     'accounts',
+    'wordly',
     # Third Party
     'djoser',
     'rest_framework',
     'corsheaders',
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "https://wordlyapp.netlify.app/"
 ]
 
 MIDDLEWARE = [
@@ -63,6 +71,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'app_backends.urls'
+CSRF_TRUSTED_ORIGINS = ["http://localhost:3000", "https://wordlyapp.netlify.app/"]
 
 TEMPLATES = [
     {
