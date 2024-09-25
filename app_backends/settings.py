@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-$gy#mq7jp)@^yfg)4u52-+b63%5k_h#4@hef10wpq1)_v$=h0u
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["https://wordlyapp.netlify.app", "localhost"]
 
 
 # Application definition
@@ -51,7 +51,8 @@ INSTALLED_APPS = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000"
+    "http://localhost:3000",
+    "https://wordlyapp.netlify.app"
 ]
 
 MIDDLEWARE = [
@@ -66,6 +67,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'app_backends.urls'
+CSRF_TRUSTED_ORIGINS = ["http://localhost:3000", "https://wordlyapp.netlify.app"]
 
 TEMPLATES = [
     {
@@ -95,8 +97,8 @@ DATABASES = {
         'NAME': env('DB_NAME'),
         'USER': env('DB_USER'),
         'PASSWORD': env('DB_PASSWORD'),
-        'HOST': env('DB_HOST'),
-        'PORT': 5432,
+        'HOST': env('DB_IP'),
+        'PORT': env('DB_PORT'),
     }
 }
 
