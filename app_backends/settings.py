@@ -27,10 +27,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-$gy#mq7jp)@^yfg)4u52-+b63%5k_h#4@hef10wpq1)_v$=h0u'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["https://wordlyapp.netlify.app", "localhost"]
-
+CORS_ORIGIN_ALLOW_ALL = True   
 
 # Application definition
 
@@ -50,10 +50,10 @@ INSTALLED_APPS = [
     'corsheaders',
 ]
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "https://wordlyapp.netlify.app"
-]
+# CORS_ALLOWED_ORIGINS = [
+#     "http://localhost:3000",
+#     "https://wordlyapp.netlify.app"
+# ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -67,7 +67,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'app_backends.urls'
-CSRF_TRUSTED_ORIGINS = ["http://localhost:3000", "https://wordlyapp.netlify.app"]
+# CSRF_TRUSTED_ORIGINS = ["http://localhost:3000", "https://wordlyapp.netlify.app"]
 
 TEMPLATES = [
     {
