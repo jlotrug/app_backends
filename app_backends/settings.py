@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import environ 
+import os
 
 env = environ.Env()
 environ.Env.read_env()
@@ -29,7 +30,7 @@ SECRET_KEY = 'django-insecure-$gy#mq7jp)@^yfg)4u52-+b63%5k_h#4@hef10wpq1)_v$=h0u
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["https://wordlyapp.netlify.app", "localhost"]
+ALLOWED_HOSTS = ["https://wordlyapp.netlify.app", "localhost", "app-backends.herokuapp.com"]
 CORS_ORIGIN_ALLOW_ALL = True   
 
 # Application definition
@@ -91,6 +92,7 @@ WSGI_APPLICATION = 'app_backends.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -101,6 +103,8 @@ DATABASES = {
         'PORT': env('DB_PORT'),
     }
 }
+import dj_database_url  
+DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -137,7 +141,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
